@@ -23,7 +23,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/pwa-home",
   "display": "standalone",
   "theme_color": "#FF5A5F",
   "background_color": "#ffffff"
