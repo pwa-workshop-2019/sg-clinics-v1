@@ -12,7 +12,7 @@ const Container = styled.div`
   padding: 2rem;
 `;
 
-export default function AppointmentConfirmation({offline = false}) {
+export default function AppointmentConfirmation({offline = true}) {
   const status = offline ? 'Pending' : 'Confirmed';
   return (
     <Container>
