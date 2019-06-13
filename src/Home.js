@@ -8,8 +8,8 @@ export default function Home(props) {
       <img
         alt="clinic"
         width="100%"
-        src="./images/steth-sm.jpg"
-        srcset="./images/steth-sm.jpg 775w,./images/steth-md.jpg 1550w, ./images/steth-lg.jpg 3100w"
+        src="./images/steth-xs.jpg"
+        srcset="./images/steth-xs.jpg 400w, ./images/steth-sm.jpg 775w,./images/steth-md.jpg 1550w, ./images/steth-lg.jpg 3100w"
         sizes="100vw"
       />
       <Row type="flex" justify="center" style={{marginTop: '2rem'}}>
