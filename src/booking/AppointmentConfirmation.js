@@ -29,13 +29,21 @@ export default class AppointmentConfirmation extends React.Component {
         alert("Push Unsupported");
         return
       }
-      console.log(`vapid public key${this.vapidPublicKey}`);
+      console.log(`vapid public key${vapidPublicKey}`);
       registration.pushManager
         .subscribe({
           userVisibleOnly: true,
           applicationServerKey: urlB64ToUint8Array(vapidPublicKey),
         })
-        .then(subscription => fetch("/subscribe",{method: 'POST', body: JSON.stringify(subscription)}))
+        .then(subscription => fetch("/subscribe",
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(subscription)
+          }
+          ))
         .then(res => this.setState({subscribed: true}))
         .catch(err => console.error("Push subscription error: ", err))
     });
