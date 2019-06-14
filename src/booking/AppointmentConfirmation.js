@@ -65,7 +65,7 @@ export default class AppointmentConfirmation extends React.Component {
             <div>
               <h5 style={{marginTop: '1rem'}}>
                 It seems you don't have internet connection at the moment.
-                Don't worry, we will book your appointment once you are back online.<br />
+                <br />Don't worry, we will book your appointment once you are back online.<br />
                 Do you wish to receive notification on the booking status?
                 <Switch style={{marginLeft: '0.5rem'}} size="small" onChange={this.notifyClicked} />
               </h5>
