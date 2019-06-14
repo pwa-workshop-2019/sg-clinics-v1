@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Switch } from 'antd';
 import styled from 'styled-components';
 import {Button, KeyValue } from "../common/Atoms";
 import {Link} from "react-router-dom";
@@ -65,10 +65,10 @@ export default class AppointmentConfirmation extends React.Component {
             <div>
               <h5 style={{marginTop: '1rem'}}>
                 It seems you don't have internet connection at the moment.
-                Don't worry, we will book your appointment once you are back online
-                and will send you notification of the appointment status.
+                Don't worry, we will book your appointment once you are back online.<br />
+                Do you wish to receive notification on the booking status?
+                <Switch style={{marginLeft: '0.5rem'}} size="small" onChange={this.notifyClicked} />
               </h5>
-              <Button onClick={this.notifyClicked}>Nofify Me</Button>
             </div>
             :
             <h5 style={{marginTop: '1rem'}}>
