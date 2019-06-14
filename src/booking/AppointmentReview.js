@@ -46,7 +46,7 @@ export default class AppointmentReview extends React.Component {
           .then(subscription => {
             this.setState({allowNotification: true, subscription: subscription});
             const jsonHeader = {'Content-Type': 'application/json'};
-            fetch("/subscribe", { method: 'POST', headers: jsonHeader,body: JSON.stringify(subscription) });
+            fetch("/book", { method: 'POST', headers: jsonHeader,body: JSON.stringify(subscription) });
           })
           .catch(err => console.error("Push subscription error: ", err));
       }

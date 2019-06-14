@@ -3,7 +3,6 @@ import { Row, Col } from 'antd';
 import styled from 'styled-components';
 import {Button, KeyValue } from "../common/Atoms";
 import {Link} from "react-router-dom";
-import {urlB64ToUint8Array} from "../utils/cryptoUtil";
 
 const Container = styled.div`
   width: 90%;
@@ -13,41 +12,12 @@ const Container = styled.div`
   padding: 2rem;
 `;
 
-const vapidPublicKey = 'BJzh06IXJHkZmXUwg5I02lywJMJMxREr0EhCiYOI2iBnzly0KxERUvoFWlpGP9OycWBSboB77lrGI9HzjpHJ7tE';
-
-
 export default class AppointmentConfirmation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {subscribed: false};
-    this.notifyClicked = this.notifyClicked.bind(this);
   }
-  notifyClicked() {
-    console.log('subscribing for push notification');
-    navigator.serviceWorker.ready.then(registration => {
-      if (!registration.pushManager) {
-        console.log(`push notifications are not supported yet by your browser`);
-        return
-      }
-      registration.pushManager
-        .subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: urlB64ToUint8Array(vapidPublicKey),
-        })
-        .then(subscription => fetch("/subscribe",
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(subscription)
-          }
-          ))
-        .then(res => this.setState({subscribed: true}))
-        .catch(err => console.error("Push subscription error: ", err))
-    });
 
-  }
   render() {
     const online = navigator.onLine;
     const status = online ? 'Confirmed' : 'Pending';

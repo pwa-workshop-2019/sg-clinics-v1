@@ -33,7 +33,7 @@ app.listen(port, ()=>{
   console.log(`server started using port:${port}`);
 });
 
-app.post('/subscribe', (req, res) => {
+app.post('/book', (req, res) => {
   const subscriptionObj = req.body;
   console.log(`pushSubscription-${JSON.stringify(subscriptionObj)}`);
   res.sendStatus(201);
