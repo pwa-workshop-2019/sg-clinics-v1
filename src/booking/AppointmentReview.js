@@ -70,12 +70,14 @@ export default class AppointmentReview extends React.Component {
           <Col span={12}>10 AM</Col>
         </Row>
         <Row>
-          <h5 style={{marginTop: '1rem'}}>
-            It seems you are offline now.
-            <br />Don't worry, We can book the appointment automatically when you are back online.<br />
-            Do you wish to proceed and receive notification once the appointment is booked?
-            <Switch style={{marginLeft: '0.5rem'}} size="small" onChange={this.notifyClicked} />
-          </h5>
+          {
+            !online &&   <h5 style={{marginTop: '1rem'}}>
+              It seems you are offline now.
+              <br />Don't worry, We can book the appointment automatically when you are back online.<br />
+              Do you wish to proceed and receive notification once the appointment is booked?
+              <Switch style={{marginLeft: '0.5rem'}} size="small" onChange={this.notifyClicked} />
+            </h5>
+          }
         </Row>
         <Row style={{marginTop: '1rem'}} gutter={24}>
           <Col sm={24} md={12} style={{marginBottom: '1rem'}}>
