@@ -13,7 +13,7 @@ const Container = styled.div`
   padding: 2rem;
 `;
 
- const vapidPublicKey = 'BJzh06IXJHkZmXUwg5I02lywJMJMxREr0EhCiYOI2iBnzly0KxERUvoFWlpGP9OycWBSboB77lrGI9HzjpHJ7tE';
+const vapidPublicKey = 'BJzh06IXJHkZmXUwg5I02lywJMJMxREr0EhCiYOI2iBnzly0KxERUvoFWlpGP9OycWBSboB77lrGI9HzjpHJ7tE';
 
 
 export default class AppointmentConfirmation extends React.Component {
@@ -26,10 +26,9 @@ export default class AppointmentConfirmation extends React.Component {
     console.log('subscribing for push notification');
     navigator.serviceWorker.ready.then(registration => {
       if (!registration.pushManager) {
-        alert("Push Unsupported");
+        console.log(`push notifications are not supported yet by your browser`);
         return
       }
-      console.log(`vapid public key${vapidPublicKey}`);
       registration.pushManager
         .subscribe({
           userVisibleOnly: true,

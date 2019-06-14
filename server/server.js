@@ -35,10 +35,9 @@ app.listen(port, ()=>{
 
 app.post('/subscribe', (req, res) => {
   const subscriptionObj = req.body;
-  console.log(`subscribe request received with body-${subscriptionObj}`);
   console.log(`pushSubscription-${JSON.stringify(subscriptionObj)}`);
   res.sendStatus(201);
-  setTimeout(() => sendNotification('Your flight VX121 has been delayed by 2 hours', subscriptionObj), 10000);
+  setTimeout(() => sendNotification('Your appointment is booked successfully', subscriptionObj), 5000);
 });
 
 function sendNotification(msg, subscriptionObj) {
