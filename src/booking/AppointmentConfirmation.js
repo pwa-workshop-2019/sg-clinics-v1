@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Switch } from 'antd';
+import { Row, Col } from 'antd';
 import styled from 'styled-components';
 import {Button, KeyValue } from "../common/Atoms";
 import {Link} from "react-router-dom";
@@ -49,8 +49,8 @@ export default class AppointmentConfirmation extends React.Component {
 
   }
   render() {
-    const {offline = true} = this.props;
-    const status = offline ? 'Pending' : 'Confirmed';
+    const online = navigator.onLine;
+    const status = online ? 'Confirmed' : 'Pending';
     return (
       <Container>
         <KeyValue label="Appointment Status" value={status} />
@@ -58,22 +58,19 @@ export default class AppointmentConfirmation extends React.Component {
         <KeyValue label="Doctor" value="Dr Tan" />
         <KeyValue label="Date" value="15 June 2019" />
         <KeyValue label="Time" value="10:00 AM" />
-        { !offline && <KeyValue label="Booking Reference" value="13467" /> }
+        { online && <KeyValue label="Booking Reference" value="13467" /> }
         {
-          (offline)
+          (online)
             ?
-            <div>
-              <h5 style={{marginTop: '1rem'}}>
-                It seems you don't have internet connection at the moment.
-                <br />Don't worry, we will book your appointment once you are back online.<br />
-                Do you wish to receive notification on the booking status?
-                <Switch style={{marginLeft: '0.5rem'}} size="small" onChange={this.notifyClicked} />
-              </h5>
-            </div>
-            :
             <h5 style={{marginTop: '1rem'}}>
               Please reach the clinic 15 minutes before your scheduled appointment time.
             </h5>
+            :
+            <div>
+              <h5 style={{marginTop: '1rem'}}>
+                You will receive notification once your appointment is booked.
+              </h5>
+            </div>
         }
         <Row type="flex" justify="center">
           <Col md={12} xs={24} style={{marginTop: '1rem'}}>

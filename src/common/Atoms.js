@@ -12,6 +12,7 @@ export const Button = styled.button`
   width: ${props => props.fluid ? '100%' : '200px' }
   color: ${props => props.primary ? '#FFFFFF' : '#FF5A5F'}
   border: solid 1px #FF5A5F;
+  background-color: ${props => props.disabled ? '#DEDEDE' : ''};
 `;
 
 export const KeyValue = (props) => {
