@@ -8,7 +8,7 @@ const menu = (
   }}>
     <Menu.Item key="1">
       <Icon type="user"/>
-      Dermatology Practice, Novina
+      Dermatology Practice, Novena
     </Menu.Item>
     <Menu.Item key="2">
       <Icon type="user"/>

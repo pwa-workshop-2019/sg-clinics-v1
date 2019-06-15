@@ -16,7 +16,7 @@ export default function Home(props) {
         srcset={`${ImageXs} 400w, ${ImageSm} 775w,${ImageMd} 1550w, ${ImageLg} 3100w`}
         sizes="100vw"
       />
-      <Row type="flex" justify="center" style={{marginTop: '2rem'}}>
+      <Row type="flex" justify="center">
         <Col sm={{span: 12, offset: 0}} xs={{span: 20, offset: 1}}>
           <AppointmentDetails/>
         </Col>
