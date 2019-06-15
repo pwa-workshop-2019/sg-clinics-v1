@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import './styles/react_dates_overrides.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorkerRegistration';
