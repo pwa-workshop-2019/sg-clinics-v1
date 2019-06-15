@@ -18,14 +18,15 @@ export default class AppointmentConfirmation extends React.Component {
   }
 
   render() {
+    const { clinic, doctor, date } = this.props.appointment;
     const online = navigator.onLine;
     const status = online ? 'Confirmed' : 'Pending';
     return (
       <Container>
         <KeyValue label="Appointment Status" value={status} />
-        <KeyValue label="Clinic" value="SP Clinic, Sengkang" />
-        <KeyValue label="Doctor" value="Dr Tan" />
-        <KeyValue label="Date" value="15 June 2019" />
+        <KeyValue label="Clinic" value={clinic} />
+        <KeyValue label="Doctor" value={doctor} />
+        <KeyValue label="Date" value={date && date.format('DD-MMM-YYYY')} />
         <KeyValue label="Time" value="10:00 AM" />
         { online && <KeyValue label="Booking Reference" value="13467" /> }
         {

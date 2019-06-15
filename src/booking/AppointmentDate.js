@@ -1,22 +1,21 @@
 import React from 'react';
 import { SingleDatePicker } from 'react-dates';
-import * as moment from 'moment';
 import {ItemContainer, Label} from '../common/Typography';
 
 export default class AppointmentDate extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { date: moment(), focused: false};
+    this.state = { focused: false};
     this.dateSelected = this.dateSelected.bind(this);
     this.focusChanged = this.focusChanged.bind(this);
   }
 
   dateSelected(date) {
-    this.setState({ date });
+    this.props.onChange(date);
   }
 
   focusChanged({focused}) {
-    this.setState({ focused })
+    this.setState({ focused });
   }
 
   render() {
@@ -24,7 +23,7 @@ export default class AppointmentDate extends React.Component {
       <ItemContainer>
         <Label>DATE</Label>
         <SingleDatePicker
-          date={this.state.date}
+          date={this.props.value}
           onDateChange={this.dateSelected}
           focused={this.state.focused}
           onFocusChange={this.focusChanged}

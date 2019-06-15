@@ -6,13 +6,14 @@ import {ItemContainer, Label} from '../common/Typography';
 export default class DoctorsDropdown extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {doctor: 'Select Your Doctor'};
     this.onDoctorSelected = this.onDoctorSelected.bind(this);
   }
   onDoctorSelected(selectedItem) {
-    this.setState({...this.state, doctor: selectedItem.domEvent.target.innerText});
+    const doctorName = selectedItem.domEvent.target.innerText;
+    this.props.onChange(doctorName);
   }
   render() {
+    const doctorName = this.props.value ? this.props.value : 'Select Doctor';
     const menu = (
       <Menu onClick={this.onDoctorSelected}>
         <Menu.Item key="1">
@@ -34,7 +35,7 @@ export default class DoctorsDropdown extends React.Component {
         <Label>CLINIC</Label>
         <Dropdown overlay={menu} trigger={["click"]} >
           <Button style={{width: '100%', height: '40px'}}>
-            {this.state.doctor} <Icon type="down"/>
+            {doctorName} <Icon type="down"/>
           </Button>
         </Dropdown>
       </ItemContainer>

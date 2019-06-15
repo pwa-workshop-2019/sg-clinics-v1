@@ -56,17 +56,18 @@ export default class AppointmentReview extends React.Component {
 
   render() {
     const {online, allowNotification } = this.state;
+    const { clinic, doctor, date } = this.props.appointment;
     const canProceed = (online || allowNotification);
     return (
       <Container>
         <Header>Appointment Details</Header>
-        <Row type="flex" align="center">
+        <Row type="flex" align="middle">
           <Col span={12}><Label>CLINIC</Label></Col>
-          <Col span={12}>SP Clinic, Sengkang</Col>
+          <Col span={12}>{clinic}</Col>
           <Col span={12}><Label>DOCTOR</Label></Col>
-          <Col span={12}>DR Tan</Col>
+          <Col span={12}>{doctor}</Col>
           <Col span={12}><Label>DATE</Label></Col>
-          <Col span={12}>15-June-2019</Col>
+          <Col span={12}>{date && date.format('DD-MMM-YYYY')}</Col>
           <Col span={12}><Label>TIME</Label></Col>
           <Col span={12}>10 AM</Col>
         </Row>
