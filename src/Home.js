@@ -13,7 +13,7 @@ export default function Home(props) {
         alt="clinic"
         width="100%"
         src="./images/steth-xs.jpg"
-        srcset={`${ImageXs} 400w, ${ImageSm} 775w,${ImageMd} 1550w, ${ImageLg} 3100w`}
+        srcSet={`${ImageXs} 400w, ${ImageSm} 775w,${ImageMd} 1550w, ${ImageLg} 3100w`}
         sizes="100vw"
       />
       <Row type="flex" justify="center">

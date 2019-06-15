@@ -12,11 +12,11 @@ export default class AppointmentDate extends React.Component {
   }
 
   dateSelected(date) {
-    this.setState({ ...this.state, date });
+    this.setState({ date });
   }
 
   focusChanged({focused}) {
-    this.setState({ ...this.state, focused })
+    this.setState({ focused })
   }
 
   render() {
@@ -34,7 +34,6 @@ export default class AppointmentDate extends React.Component {
           block={true}
           openDirection="up"
           id="appointmentDate"
-          style={{width: '100%' }}
         />
       </ItemContainer>
     );
