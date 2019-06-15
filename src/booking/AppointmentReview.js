@@ -28,6 +28,7 @@ export default class AppointmentReview extends React.Component {
     super(props);
     this.state= {online: navigator.onLine, allowNotification: false, subscription: null };
     this.notifyClicked = this.notifyClicked.bind(this);
+    this.bookAppointment = this.bookAppointment.bind(this);
   }
 
   notifyClicked(checked) {
@@ -46,12 +47,17 @@ export default class AppointmentReview extends React.Component {
           })
           .then(subscription => {
             this.setState({...this.state, subscription: subscription});
-            const jsonHeader = {'Content-Type': 'application/json'};
-            fetch("/book", { method: 'POST', headers: jsonHeader,body: JSON.stringify(subscription) });
           })
           .catch(err => console.error("Push subscription error: ", err));
       }
     });
+  }
+
+  bookAppointment() {
+    const {subscription} = this.state;
+    const reqBody = { subscription, appDetails: this.props.appointment};
+    const jsonHeader = {'Content-Type': 'application/json'};
+    fetch("/api/book.json", { method: 'POST', headers: jsonHeader,body: JSON.stringify(reqBody) });
   }
 
   render() {
@@ -84,7 +90,7 @@ export default class AppointmentReview extends React.Component {
         <Row style={{marginTop: '1rem'}} gutter={24}>
           <Col sm={24} md={12} style={{marginBottom: '1rem'}}>
             <Link to="/apt-confirm">
-              <Button primary fluid disabled={!canProceed}>Proceed</Button>
+              <Button primary fluid disabled={!canProceed} onClick={this.bookAppointment}>Proceed</Button>
             </Link>
           </Col>
           <Col sm={24} md={12} style={{marginBottom: '1rem'}}>

@@ -14,3 +14,15 @@ self.addEventListener("push", event => {
 
   event.waitUntil(self.registration.showNotification('SG Clinics', body));
 });
+
+const bgSyncPlugin = new workbox.backgroundSync.Plugin('sgClinic-book', {
+  maxRetentionTime: 1 * 60 // Retry for max of 24 Hours
+});
+
+workbox.routing.registerRoute(
+  /\/api\/.*\/*.json/,
+  new workbox.strategies.NetworkOnly({
+    plugins: [bgSyncPlugin]
+  }),
+  'POST'
+);

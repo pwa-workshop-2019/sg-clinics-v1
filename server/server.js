@@ -13,14 +13,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname,'../build')));
-app.use((req, res, next) => {
-  if (req.header('x-forwarded-proto') !== 'https') {
-    res.redirect(`https://${req.header('host')}${req.url}`)
-  }
-  else {
-    next();
-  }
-});
+
+// app.use((req, res, next) => {
+//   if (req.header('x-forwarded-proto') !== 'https') {
+//     res.redirect(`https://${req.header('host')}${req.url}`)
+//   }
+//   else {
+//     next();
+//   }
+// });
 
 app.use(function (req, res, next) {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
@@ -33,11 +34,14 @@ app.listen(port, ()=>{
   console.log(`server started using port:${port}`);
 });
 
-app.post('/book', (req, res) => {
-  const subscriptionObj = req.body;
-  console.log(`pushSubscription-${JSON.stringify(subscriptionObj)}`);
+app.post('/api/book.json', (req, res) => {
+  const {subscription, appDetails} = req.body;
+  console.log(`pushSubscription-${JSON.stringify(subscription)}`);
+  console.log(`appointment details-${JSON.stringify(appDetails)}`);
   res.sendStatus(201);
-  setTimeout(() => sendNotification('Your appointment is booked successfully', subscriptionObj), 5000);
+  if(subscription) {
+    setTimeout(() => sendNotification('Your appointment is booked successfully', subscription), 3000);
+  }
 });
 
 function sendNotification(msg, subscriptionObj) {
