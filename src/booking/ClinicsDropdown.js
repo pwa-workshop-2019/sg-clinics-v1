@@ -25,7 +25,7 @@ export default function ClinicsDropdown(props) {
   return (
     <ItemContainer>
       <Label>CLINIC</Label>
-      <Dropdown overlay={menu}>
+      <Dropdown overlay={menu} trigger={["click"]}>
         <Button style={{width: '100%', height: '40px'}}>
           Select Clinic <Icon type="down"/>
         </Button>
