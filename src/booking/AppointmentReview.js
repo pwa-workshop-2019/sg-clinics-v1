@@ -32,6 +32,8 @@ export default class AppointmentReview extends React.Component {
   }
 
   notifyClicked(checked) {
+    this.setState({...this.state, allowNotification: checked});
+
     navigator.serviceWorker.ready.then(registration => {
       if (!registration.pushManager) {
         console.log(`push notifications are not supported yet by your browser`);
@@ -44,7 +46,7 @@ export default class AppointmentReview extends React.Component {
             applicationServerKey: urlB64ToUint8Array(vapidPublicKey),
           })
           .then(subscription => {
-            this.setState({allowNotification: true, subscription: subscription});
+            this.setState({...this.state, subscription: subscription});
             const jsonHeader = {'Content-Type': 'application/json'};
             fetch("/book", { method: 'POST', headers: jsonHeader,body: JSON.stringify(subscription) });
           })
@@ -75,7 +77,7 @@ export default class AppointmentReview extends React.Component {
               It seems you are offline now.
               <br />Don't worry, We can book the appointment automatically when you are back online.<br />
               Do you wish to proceed and receive notification once the appointment is booked?
-              <Switch style={{marginLeft: '0.5rem'}} size="small" onChange={this.notifyClicked} />
+              <Switch checked={allowNotification} style={{marginLeft: '0.5rem'}} size="small" onChange={this.notifyClicked} />
             </h5>
           }
         </Row>
