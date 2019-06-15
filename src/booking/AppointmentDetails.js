@@ -12,6 +12,8 @@ const DesktopContainer = styled.div`
   padding: 3rem;
   padding-top: 0;
   background-color: #fff;
+  width: 50%;
+  max-width: 400px;
 `;
 
 export default function AppointmentDetails(props) {
