@@ -3,33 +3,41 @@ import {Button, Dropdown, Menu, Icon} from 'antd';
 import {ItemContainer, Label} from '../common/Typography';
 
 
-const menu = (
-  <Menu onClick={() => {
-  }}>
-    <Menu.Item key="1">
-      <Icon type="user"/>
-      Dermatology Practice, Novena
-    </Menu.Item>
-    <Menu.Item key="2">
-      <Icon type="user"/>
-      My Family Practice, Sengkang
-    </Menu.Item>
-    <Menu.Item key="3">
-      <Icon type="user"/>
-      Child Speciality Clinic, Tampines
-    </Menu.Item>
-  </Menu>
-);
-
-export default function ClinicsDropdown(props) {
-  return (
-    <ItemContainer>
-      <Label>CLINIC</Label>
-      <Dropdown overlay={menu} trigger={["click"]}>
-        <Button style={{width: '100%', height: '40px'}}>
-          Select Clinic <Icon type="down"/>
-        </Button>
-      </Dropdown>
-    </ItemContainer>
-  );
+export default class ClinicsDropdown extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {clinic: 'Select Clinic'};
+    this.onClinicSelected = this.onClinicSelected.bind(this);
+  }
+  onClinicSelected(selectedItem) {
+    this.setState({...this.state, clinic: selectedItem.domEvent.target.innerText});
+  }
+  render() {
+    const menu = (
+      <Menu onClick={this.onClinicSelected}>
+        <Menu.Item key="1">
+          <Icon type="user"/>
+          Dermatology Practice, Novena
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="user"/>
+          My Family Practice, Sengkang
+        </Menu.Item>
+        <Menu.Item key="3">
+          <Icon type="user"/>
+          Child Speciality Clinic, Tampines
+        </Menu.Item>
+      </Menu>
+    );
+    return (
+      <ItemContainer>
+        <Label>CLINIC</Label>
+        <Dropdown overlay={menu} trigger={["click"]} >
+          <Button style={{width: '100%', height: '40px'}}>
+            {this.state.clinic} <Icon type="down"/>
+          </Button>
+        </Dropdown>
+      </ItemContainer>
+    );
+  }
 }
